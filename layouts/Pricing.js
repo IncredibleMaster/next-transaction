@@ -1,57 +1,83 @@
-import Link from "next/link";
-import Cta from "./components/Cta";
+import config from "@config/config.json";
+import { markdownify } from "@lib/utils/textConverter";
+import Link from 'next/Link'
 
-function Pricing({ data }) {
-  const {
-    frontmatter: { title, plans, call_to_action },
-  } = data;
+const Pricing = ({ data }) => {
+  const { frontmatter } = data;
+  const { title, info } = frontmatter;
+  const { contact_form_action } = config.params;
+
   return (
-    <>
-      <section className="section pb-0">
-        <div className="container">
-          <h1 className="text-center font-normal">{title}</h1>
-          <div className="section row -mt-10 justify-center md:mt-0">
-            {plans.map((plan, index) => (
-              <div
-                className={`col-12 md:col-4 ${
-                  !plan.recommended ? "lg:px-0" : "col-recommended"
-                }`}
-                key={plan.title + index}
-              >
-                <div className="card text-center">
-                  <h4>{plan.title}</h4>
-                  <div className="mt-5">
-                    <span className="text-5xl text-dark">${plan.price}</span>
-                    <span>/ {plan.type}</span>
-                  </div>
-                  <h5 className="mt-2 font-normal text-text">
-                    {plan.subtitle}
-                  </h5>
-                  <ul className="mt-5">
-                    {plan.features.map((feature, index) => (
-                      <li className="mb-[10px] leading-5" key={index}>
-                        {feature}
-                      </li>
-                    ))}
-                  </ul>
-                  <Link
-                    className={`btn mt-5 ${
-                      plan.recommended ? "btn-primary" : "btn-outline-primary"
-                    }`}
-                    href={plan.button.link}
-                    rel={plan.button.rel}
-                  >
-                    {plan.button.label}
-                  </Link>
-                </div>
+    <section className="section">
+      <div className="container">
+        {markdownify(title, "h1", "text-center font-normal")}
+        <div className="section row pb-0">
+          <div className="col-12 md:col-6 lg:col-7">
+            <form
+              className="contact-form"
+              method="POST"
+              action={contact_form_action}
+            >
+              <div className="mb-3">
+                <input
+                  className="form-input w-full rounded"
+                  name="name"
+                  type="text"
+                  placeholder="Name"
+                  required
+                />
               </div>
-            ))}
+
+              <div className="mb-3">
+                <input
+                  className="form-input w-full rounded"
+                  name="price"
+                  type="number"
+                  placeholder="Price in USD"
+                  required
+                />
+              </div>
+
+              <div className="mb-3">
+                <input
+                  className="form-input w-full rounded"
+                  name="subject"
+                  type="Date"
+                  placeholder="Enter current date"
+                  required
+                />
+              </div>
+
+              <div className="mb-3">
+                <textarea
+                  className="form-textarea w-full rounded-md"
+                  rows="7"
+                  placeholder="Your message"
+                />
+              </div>
+
+              <Link href={"/transaction"}>
+                <button onSubmit={() => sub} className="btn btn-primary">
+                  Send Now
+                </button>
+              </Link>
+            </form>
+          </div>
+          <div className="content col-12 md:col-6 lg:col-5">
+            {markdownify(info.title, "h4")}
+            {markdownify(info.description, "p", "mt-4")}
+            <ul className="contact-list mt-5">
+              {info.contacts.map((contact, index) => (
+                <li key={index}>
+                  {markdownify(contact, "strong", "text-dark")}
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
-      </section>
-      <Cta cta={call_to_action} />
-    </>
+      </div>
+    </section>
   );
-}
+};
 
 export default Pricing;

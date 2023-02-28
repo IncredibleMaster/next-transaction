@@ -1,6 +1,6 @@
 ---
-title: "Adversus is a web-based dialer and practical CRM solution"
-description: "Heading example Here is example of hedings. You can use this heading by following markdownify rules."
+title: "Hello World"
+description: "Hello World."
 image: "/images/blog-4.jpg"
 date: 2022-08-04T05:00:00Z
 draft: false
@@ -10,37 +10,20 @@ draft: false
 
 Here is an example of headings. You can use this heading by the following markdown rules. For example: use `#` for heading 1 and use `######` for heading 6.
 
-# Heading 1
-
-## Heading 2
-
-### Heading 3
-
-#### Heading 4
-
-##### Heading 5
-
-###### Heading 6
-
+Hello World
 ---
 
 ##### Emphasis
 
-The emphasis, aka italics, with _asterisks_ or _underscores_.
-
-Strong emphasis, aka bold, with **asterisks** or **underscores**.
-
-The combined emphasis with **asterisks and _underscores_**.
-
-Strikethrough uses two tildes. ~~Scratch this.~~
+Hello world
 
 ---
 
 ##### Link
 
-[I'm an inline-style link](https://www.google.com)
+[This is Googel link](https://www.google.com)
 
-[I'm an inline-style link with title](https://www.google.com "Google's Homepage")
+[This is google's homepage](https://www.google.com "Google's Homepage")
 
 [I'm a reference-style link][arbitrary case-insensitive reference text]
 

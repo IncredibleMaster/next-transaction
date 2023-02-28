@@ -9,6 +9,7 @@ const Default = ({ data }) => {
     <section className="section">
       <div className="container">
         {markdownify(title, "h1", "h2 mb-8 text-center")}
+        {/* {console.log("c")} */}
         <div className="content">
           <MDXRemote {...mdxContent} components={shortcodes} />
         </div>
